@@ -1,11 +1,22 @@
 ![Header Image - SAS Viya Workbench Starter Examples (SAS + Python + R)](wb-header-img.png)
 
 # SAS Viya Workbench Starter Examples (SAS + Python + R)
+## Overview
 
 A practical starter repository with small, copy/paste-friendly examples for SAS Viya Workbench across SAS, Python, and R.
 Use this repo to learn the basics of running code, using notebooks, and building repeatable workflows.
 
-## Quick Resource Links
+### Prerequisites
+
+An active SAS Viya Workbench license and environment
+
+### Installation
+
+Start SAS® Viya® Workbench and clone the examples repository into the root of your workspace:
+
+`git clone https://github.com/lleytonse/workbench-starter-code.git`
+
+### Quick Resource Links
 - [Workbench Documentation](https://go.documentation.sas.com/doc/en/workbenchcdc/v_001/workbenchwlcm/home.htm?fromDefault=)
 - [Getting Started Video (Youtube)](https://www.youtube.com/watch?v=BkjmQMXfpJU&t=57s)
 - [List of Common PROCs](https://go.documentation.sas.com/doc/en/workbenchcdc/v_001/workbenchprocs/n1xot8d31pfd0in1puiry6rhrum8.htm)
@@ -13,18 +24,33 @@ Use this repo to learn the basics of running code, using notebooks, and building
 - [Workbench Quick Start Videos](https://communities.sas.com/t5/SAS-Viya-Workbench-Getting/tkb-p/viya-workbench-get-started)
 
 
-## Prerequisites
+## License & Data
 
-- An active SAS Viya Workbench license and environment
+SAS provides more than 200 data sets in the Sashelp library. These data sets are available for you to use for examples and for testing code. For example, the following step uses the Sashelp.LeuTrain data set:
 
+```sas
+title 'Leukemia Training Data';
+proc contents data=sashelp.LeuTrain varnum;
+   ods select position;
+run;
+```
 
-## Data
+You do not need to provide a DATA step to use Sashelp data sets.
 
-This repository uses an adapted [Open Source Imaging Consortium](https://www.osicild.org/kaggle01.html) data set licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+The following steps list all the data sets that are available in Sashelp:
 
-The original data set was taken from [this location](https://www.kaggle.com/competitions/osic-pulmonary-fibrosis-progression/data?select=train.csv), and the following changes were made:
+```sas
+ods select none;
+proc contents data=sashelp._all_;
+   ods output members=m;
+run;
+ods select all;
 
-- Drop DICOM data for size considerations
+proc print;
+   where memtype = 'DATA';
+run;
+```
+
 
 ## Contact
 
